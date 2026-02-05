@@ -20,7 +20,8 @@ export async function submitRegistration(prevState: any, formData: FormData) {
 
     const { error } = await supabase
         .from('students')
-        .update({
+        .upsert({
+            id: user.id,
             address,
             gender,
             dob,
@@ -28,9 +29,9 @@ export async function submitRegistration(prevState: any, formData: FormData) {
             graduation_year: parseInt(graduationYear),
             average_score: parseFloat(averageScore),
             selected_major_id: parseInt(selectedMajorId),
-            status: 'pending_verification'
+            status: 'pending_verification',
+            updated_at: new Date().toISOString(),
         })
-        .eq('id', user.id)
 
     if (error) {
         return { error: error.message }

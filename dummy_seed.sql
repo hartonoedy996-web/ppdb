@@ -1,7 +1,8 @@
 -- Enable pgcrypto for password hashing
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- 1. Create ADMIN Account (admin@sekolah.com / password123)
+-- 1. Create ADMIN Account
+-- email_confirmed_at = now() forces the account to be active immediately without email verification.
 INSERT INTO auth.users (
   instance_id,
   id,
@@ -19,17 +20,16 @@ INSERT INTO auth.users (
   gen_random_uuid(),
   'authenticated',
   'authenticated',
-  'admin@sekolah.com',
+  'srtcreativedesign@gmail.com',
   crypt('password123', gen_salt('bf')),
-  now(),
+  now(), -- <--- This confirms the email immediately!
   '{"provider":"email","providers":["email"]}',
   '{"full_name": "Admin Utama", "role": "admin"}',
   now(),
   now()
 );
 
--- 2. Create STUDENT Account (siswa@sekolah.com / password123)
--- The trigger 'on_auth_user_created' will automatically add this user to 'public.users' and 'public.students'
+-- 2. Create STUDENT Account
 INSERT INTO auth.users (
   instance_id,
   id,
@@ -49,7 +49,7 @@ INSERT INTO auth.users (
   'authenticated',
   'siswa@sekolah.com',
   crypt('password123', gen_salt('bf')),
-  now(),
+  now(), -- <--- This confirms the email immediately!
   '{"provider":"email","providers":["email"]}',
   '{"full_name": "Budi Santoso", "role": "student", "nisn": "0012345678", "phone": "081234567890"}',
   now(),
