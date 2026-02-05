@@ -5,17 +5,10 @@ Act as a Senior Full Stack Developer. You are an expert in [Pilih Stack Anda: La
 Build a "New Student Admission System" (PPDB) for a vocational school named "SMK Azzahra Sepatan". The system must manage the registration workflow from landing page, student data entry, administration verification, payment, to final acceptance status.
 
 # Core Tech Stack
-- Frontend + Backend: next.js
+- Frontend + Backend: next.js+tailwindcss
 - Database: supabase
 
 # Detailed Features & Flow Requirements
-
-## 1. Public Landing Page
-- **Hero Section:** Professional header with school branding "SMK Azzahra Sepatan" and a clear Call to Action (CTA) for "Daftar Sekarang" (Register) and "Masuk" (Login).
-- **Visi & Misi Section:** Display the school's Vision and Mission clearly below the fold.
-- **Routing:**
-  - "Masuk" -> Redirects to Login Page.
-  - "Daftar" -> Redirects to the Registration Wizard.
 
 ## 2. Authentication & Role Management
 - **Roles:**
